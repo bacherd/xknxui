@@ -1,0 +1,8 @@
+fastapi==0.101.1
+https://github.com/XKNX/xknxproject/archive/refs/heads/main.zip
+pydantic
+typeddict
+uvicorn
+watchfiles
+websockets
+xknx

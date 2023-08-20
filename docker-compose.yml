@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  xknxui:
+    image: xknxui
+    build: .
+    ports:
+      - 8124:8124
+    environment:
+      - TZ='Europe/Berlin'
+      - KNX_PROJECT=/data/project.knxproj
+      - KNX_GW_IP=192.168.8.251
+      - KNX_GW_PORT=3671
+    volumes:
+      - ./examples/Minimal-Example.knxproj:/data/project.knxproj:ro
+

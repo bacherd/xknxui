@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  xknxui:
+    image: xknxui
+    build: .
+    ports:
+      - 8124:8124
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TZ='Europe/Berlin'
+      - KNX_PROJECT=/data/project.knxproj
+      - KNX_GW_IP=192.168.8.251
+      - KNX_GW_PORT=3671
+    volumes:
+      - ./examples/Home.knxproj:/data/project.knxproj:ro
+      - ./server:/usr/src/app/server
+    #entrypoint: uvicorn
+    working_dir: /usr/src/app/
+    command: ["-m", "uvicorn", "server.__main__:app", "--host", "0.0.0.0", "--port", "8124", "--reload"]
+  angular:
+    image: angular-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.angular
+    ports:
+      - 4200:4200
+    volumes:
+      - ./app:/app
+    working_dir: /app/xknxui
+    command: ["ng", "serve", "--host", "0.0.0.0" ]
+

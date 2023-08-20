@@ -1,0 +1,19 @@
+
+<ul *ngIf='space && ((space.spaces | keyvalue).length > 0 || space.functions.length > 0)'>
+        <li>
+            <mat-icon *ngIf="space.type=='Building'" mat-list-icon>business</mat-icon>
+            <mat-icon *ngIf="space.type=='BuildingPart'" mat-list-icon>home</mat-icon>
+            <mat-icon *ngIf="space.type=='Floor'" mat-list-icon>dashboard</mat-icon>
+            <mat-icon *ngIf="space.type=='Room'" mat-list-icon>meeting_room</mat-icon>
+            <mat-icon *ngIf="space.type=='DistributionBoard'" mat-list-icon>dns</mat-icon>
+
+            <a *ngIf="space.functions.length == 0">{{space_name}} </a>
+            <a *ngIf="space.functions.length > 0" [routerLink]="['/room/', space.identifier]" routerLinkActive="active">{{space_name}} ({{space.functions.length}})</a>
+        </li>
+
+        <li *ngIf='(space.spaces | keyvalue).length > 0'>
+            <ng-container *ngFor="let s of space.spaces | keyvalue">
+                <app-room-navigation-space [space_name]="castToString(s.key)" [space]='s.value'></app-room-navigation-space> 
+            </ng-container>
+        </li>
+</ul>

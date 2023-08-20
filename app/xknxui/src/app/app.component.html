@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">API_URL: {{api_url}}</h1>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidebar-container" autosize>
+    <mat-sidenav #sidenav class="sidebar-sidenav" mode="side" opened="true">
+
+        <!--
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon mat-list-icon>home</mat-icon>
+            </mat-list-item>
+        </mat-nav-list>
+        -->
+
+        <div *ngIf='project'>
+          <app-room-navigation [locations]='project.locations'></app-room-navigation>
+        </div>
+
+    </mat-sidenav>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+
+        <!--
+        <div *ngIf='project'>
+            {{project.info | json}}
+        </div>
+        -->
+    </div>
+
+</mat-sidenav-container>

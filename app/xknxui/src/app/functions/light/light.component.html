@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header>
+        {{func.name}}
+    </mat-card-header>
+
+    <mat-card-content>
+        <button mat-fab [ngClass]="{'light-on' : on, 'light-off' : !on}" (click)="onBtnClicked()">
+            <mat-icon>light</mat-icon>            
+        </button>
+    </mat-card-content>
+    <mat-card-footer>
+        <a *ngIf="ga_ctrl">CTRL GA: {{ga_ctrl.address}} </a>
+        <br />
+        <a *ngIf="ga_status">STATUS GA: {{ga_status.address}} </a>
+    </mat-card-footer>
+</mat-card>

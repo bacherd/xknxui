@@ -1,0 +1,14 @@
+<div *ngIf='space'>
+    <p>{{space.name}}</p>
+</div>
+
+
+<div class="functions" *ngIf="functions">
+    <mat-grid-list [cols]="gridCols" rowHeight="400px" (window:resize)="onResize($event)">
+        <mat-grid-tile *ngFor="let f of functions">
+
+            <app-light [func]="f" *ngIf="f.function_type=='FT-1'"></app-light>
+
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
